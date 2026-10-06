@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sri Aditya Quotation App</title>
+    
+    <meta name="theme-color" content="#c90000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="SAEC Quote">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mandali&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Sri%20Aditya%20Quotation%20App%22%2C%22short_name%22%3A%22SAEC%20Quote%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23ffffff%22%2C%22theme_color%22%3A%22%23c90000%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Butf8%2C%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20512%20512%27%3E%3Crect%20width%3D%27512%27%20height%3D%27512%27%20rx%3D%27100%27%20fill%3D%27%23c90000%27%2F%3E%3Ctext%20x%3D%2750%25%27%20y%3D%2755%25%27%20dominant-baseline%3D%27middle%27%20text-anchor%3D%27middle%27%20fill%3D%27white%27%20font-size%3D%27200%27%20font-family%3D%27sans-serif%27%20font-weight%3D%27bold%27%3ESA%3C%2Ftext%3E%3C%2Fsvg%3E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%7D%5D%7D">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Mandali', 'Noto Sans Devanagari', 'Roboto', 'Arial', sans-serif;
+            background-color: #1e293b;
+            color: #c90000;
+            padding: 10px 0 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .app-bar {
+            width: 100%;
+            max-width: 210mm;
+            background: #0f172a;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border: 1px solid #334155;
+        }
+        .app-title-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .app-icon {
+            width: 36px;
+            height: 36px;
+            background: #c90000;
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 16px;
+        }
+        .btn-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .lang-select-box {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: #1e293b;
+            padding: 4px 8px;
+            border-radius: 8px;
+            border: 1px solid #475569;
+        }
+        .lang-label {
+            font-size: 12px;
+            color: #cbd5e1;
+            font-weight: 700;
+        }
+        .lang-select {
+            background-color: #0f172a;
+            color: #f87171;
+            border: 1px solid #dc2626;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 800;
+            cursor: pointer;
+            outline: none;
+        }
+        .lang-select option {
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+
+        .action-btn {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+        .action-btn:hover {
+            opacity: 0.9;
+        }
+        .btn-install {
+            background-color: #3b82f6;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: #000;
+        }
+        .btn-print {
+            background-color: #059669;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            height: 297mm;
+            background: #fff;
+            padding: 14mm 16mm;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 2.5px solid #c90000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #c90000;
+            position: relative;
+        }
+
+        @media screen and (max-width: 820px) {
+            body {
+                padding: 10px;
+            }
+            .app-bar {
+                width: 100%;
+                border-radius: 10px;
+            }
+            .page {
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                padding: 18px;
+            }
+            .company-title {
+                font-size: 22px !important;
+            }
+            .meta-section {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .to-box {
+                width: 100% !important;
+            }
+            .right-box {
+                text-align: left !important;
+                align-items: flex-start !important;
+            }
+            .bottom-section {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start !important;
+            }
+            .signature-box {
+                text-align: left !important;
+                min-width: auto !important;
+            }
+        }
+
+        [contenteditable="true"] {
+            outline: none;
+            min-height: 20px;
+        }
+        [contenteditable="true"]:empty:before {
+            content: attr(placeholder);
+            color: #94a3b8;
+        }
+        [contenteditable="true"]:hover {
+            background-color: #f1f5f9;
+            outline: 1px dashed #64748b;
+            border-radius: 3px;
+        }
+        [contenteditable="true"]:focus {
+            background-color: #fff;
+            outline: 2px solid #000;
+            border-radius: 3px;
+        }
+
+        /* Top Header (RED) */
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14.5px;
+            font-weight: 800;
+            margin-bottom: 4px;
+            color: #c90000;
+            user-select: none;
+        }
+
+        /* Main Top Title - QUOTATION */
+        .main-quotation-title {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-decoration: underline;
+            color: #c90000;
+            margin: 2px 0 8px 0;
+            user-select: none;
+        }
+
+        /* Centered Logo & Company Header (RED) */
+        .company-header-centered {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 2.5px solid #c90000;
+            padding-bottom: 10px;
+            margin-bottom: 12px;
+            user-select: none;
+        }
+        .logo-center-box {
+            margin-bottom: 6px;
+        }
+        .company-title {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #c90000;
+            line-height: 1.15;
+        }
+        .company-address {
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 4px;
+            color: #c90000;
+        }
+
+        /* MIDDLE SECTION: BLACK FONT */
+        .black-middle-section {
+            color: #000000 !important;
+        }
+
+        .meta-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #000000 !important;
+        }
+        .to-box {
+            width: 58%;
+            color: #000000 !important;
+        }
+        .to-title {
+            font-weight: 900;
+            margin-bottom: 2px;
+            font-size: 15px;
+            user-select: none;
+            color: #000000 !important;
+        }
+        .to-address-field {
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 1.45;
+            min-height: 48px;
+            white-space: pre-wrap;
+            display: block;
+            color: #000000 !important;
+        }
+        .to-meta-row {
+            margin-top: 4px;
+            font-size: 13.5px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #000000 !important;
+        }
+        .to-meta-label {
+            user-select: none;
+            color: #000000 !important;
+        }
+        .to-meta-val {
+            display: inline-block;
+            min-width: 170px;
+            color: #000000 !important;
+        }
+
+        .right-box {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            color: #000000 !important;
+        }
+        .date-box {
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #000000 !important;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        .date-label {
+            user-select: none;
+            color: #000000 !important;
+        }
+        .date-val {
+            display: inline-block;
+            min-width: 95px;
+            text-align: left;
+            color: #000000 !important;
+        }
+
+        /* Table */
+        .table-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 2px solid #000000;
+            flex-grow: 1;
+        }
+        th, td {
+            border: 1.5px solid #000000;
+            padding: 7px 10px;
+            vertical-align: top;
+            color: #000000 !important;
+        }
+        th {
+            font-size: 14px;
+            font-weight: 900;
+            text-align: center;
+            background-color: #fff;
+            border-bottom: 2px solid #000000;
+            padding: 8px;
+            user-select: none;
+            color: #000000 !important;
+        }
+        .th-sno {
+            width: 55px;
+        }
+        .th-particulars {
+            text-align: left;
+        }
+        .th-qty {
+            width: 80px;
+            text-align: center;
+        }
+        .th-amount {
+            width: 145px;
+            text-align: right;
+        }
+
+        .td-sno {
+            text-align: center;
+            font-weight: 800;
+            font-size: 14px;
+            user-select: none;
+            color: #000000 !important;
+        }
+        .td-particulars {
+            font-size: 14px;
+            line-height: 1.5;
+            font-weight: 700;
+            min-height: 80px;
+            color: #000000 !important;
+        }
+        .td-qty {
+            text-align: center;
+            font-size: 14.5px;
+            font-weight: 800;
+            color: #000000 !important;
+        }
+        .td-amount {
+            text-align: right;
+            font-size: 14.5px;
+            font-weight: 800;
+            white-space: nowrap;
+            color: #000000 !important;
+        }
+
+        /* Summary rows */
+        .summary-row td {
+            font-weight: 800;
+            font-size: 13.5px;
+            padding: 5px 10px;
+            color: #000000 !important;
+        }
+        .summary-label {
+            text-align: right;
+            padding-right: 15px;
+            letter-spacing: 0.5px;
+            user-select: none;
+            color: #000000 !important;
+        }
+        .grand-total-row td {
+            font-weight: 900;
+            font-size: 15.5px;
+            border-top: 2px solid #000000;
+            border-bottom: 2px solid #000000;
+            padding: 8px 10px;
+            color: #000000 !important;
+        }
+
+        .del-btn {
+            color: #dc2626;
+            background: none;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            float: right;
+            font-size: 15px;
+            margin-left: 6px;
+        }
+
+        /* Bottom Section: Bank and Signature */
+        .bottom-section {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 6px;
+            color: #c90000;
+            user-select: none;
+        }
+        .bank-details {
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        .bank-row {
+            display: flex;
+        }
+        .bank-label {
+            width: 155px;
+            font-weight: 800;
+        }
+        .bank-colon {
+            width: 16px;
+            font-weight: 800;
+        }
+        .bank-value {
+            font-weight: 800;
+        }
+
+        .signature-box {
+            text-align: center;
+            font-size: 13.5px;
+            min-width: 280px;
+        }
+        .yours-faithfully {
+            font-size: 13.5px;
+            margin-bottom: 45px;
+            font-weight: 800;
+        }
+        .sig-company {
+            font-weight: 900;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .sig-role {
+            font-weight: 800;
+            margin-top: 2px;
+            font-size: 13.5px;
+        }
+
+        @media print {
+            html, body {
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                background: white !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .app-bar, .del-btn {
+                display: none !important;
+            }
+            .page {
+                box-shadow: none !important;
+                border: 2.5px solid #c90000 !important;
+                margin: 0 !important;
+                padding: 12mm 15mm !important;
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                max-height: 297mm !important;
+                page-break-after: avoid !important;
+                page-break-inside: avoid !important;
+            }
+            .black-middle-section, .meta-section, table, th, td, .summary-row td, .grand-total-row td {
+                color: #000000 !important;
+                border-color: #000000 !important;
+            }
+            .header-top, .main-quotation-title, .company-header-centered, .bottom-section {
+                color: #c90000 !important;
+            }
+            [contenteditable="true"]:empty:before {
+                content: "" !important;
+            }
+            [contenteditable="true"]:hover, [contenteditable="true"]:focus {
+                background-color: transparent !important;
+                outline: none !important;
+            }
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-bar">
+        <div class="app-title-box">
+            <div class="app-icon" id="appIconTxt">SA</div>
+            <div>
+                <strong style="font-size: 14.5px; color: #f87171;" id="appBarTitle">శ్రీ ఆదిత్య కొటేషన్ యాప్</strong>
+                <p style="font-size: 11px; color: #94a3b8; margin-top: 1px;" id="appBarSub">ENGLISH | TELUGU | HINDI (3 Languages)</p>
+            </div>
+        </div>
+
+        <div class="btn-group">
+            <!-- Language Selector Switcher Dropdown -->
+            <div class="lang-select-box">
+                <span class="lang-label">🌐 భాష / Language:</span>
+                <select class="lang-select" id="langSelector" onchange="changeLanguage(this.value)">
+                    <option value="te" selected>తెలుగు (Telugu)</option>
+                    <option value="en">English</option>
+                    <option value="hi">हिंदी (Hindi)</option>
+                </select>
+            </div>
+
+            <button class="action-btn btn-install" id="installBtn" onclick="installApp()">
+                📲 <span id="btnInstallTxt">యాప్ ఇన్స్టాల్</span>
+            </button>
+            <button class="action-btn" onclick="addRow()">+ <span id="btnAddRowTxt">వరుస చేర్చు</span></button>
+            <button class="action-btn btn-whatsapp" onclick="shareOnWhatsApp()">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.297.144.35.491 1.199.534 1.286.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.044.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.155.57 4.177 1.564 5.922l-1.572 5.746 5.894-1.547c1.782.97 3.823 1.523 5.992 1.523 6.627 0 12-5.373 12-12 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                <span id="btnWaTxt">వాట్సాప్</span>
+            </button>
+            <button class="action-btn btn-print" onclick="window.print()">🖨️ <span id="btnPrintTxt">PDF సేవ్</span></button>
+        </div>
+    </div>
+
+    <!-- Printable A4 Page -->
+    <div class="page" id="invoice">
+        <div>
+            <!-- Top GST & Cell Numbers -->
+            <div class="header-top">
+                <div><span id="gstLabel">జి.ఎస్.టి (GST)</span>: 37ABTPL6296K1ZN</div>
+                <div><span id="cellLabel">ఫోన్ (CELL)</span>: 9246477887, 9490196715.</div>
+            </div>
+
+            <!-- Main Title: QUOTATION / కొటేషన్ / कोटेशन -->
+            <div class="main-quotation-title" id="mainTitleTxt">కొటేషన్ (QUOTATION)</div>
+
+            <!-- Centered Jai Logo & Company Header -->
+            <div class="company-header-centered">
+                <div class="logo-center-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="115" height="115">
+                      <path d="M 60 60 L 320 60 L 320 215 L 298 215 L 298 82 L 82 82 L 82 300 L 225 300 L 225 322 L 60 322 Z" fill="#0072CE"/>
+                      <path d="M 235 298 L 298 298 L 298 225 L 320 225 L 320 320 L 235 320 Z" fill="#F37021"/>
+                      <circle cx="340" cy="70" r="14" fill="none" stroke="#0072CE" stroke-width="3"/>
+                      <text x="340" y="75" font-size="16" font-family="Arial, sans-serif" font-weight="bold" fill="#0072CE" text-anchor="middle">R</text>
+                      <text x="185" y="270" font-size="145" font-family="'Arial Black', 'Trebuchet MS', sans-serif" font-weight="900" fill="#0072CE" text-anchor="middle" letter-spacing="-4">Jai</text>
+                      <text x="200" y="365" font-size="30" font-family="'Helvetica Neue', Arial, sans-serif" font-weight="bold" fill="#333" text-anchor="middle">For now. Forever.</text>
+                    </svg>
+                </div>
+                <div class="company-title" id="companyVal">
+                    శ్రీ ఆదిత్య ఇంజనీరింగ్ కంపెనీ
+                </div>
+                <div class="company-address" id="companyAddressVal">
+                    డోర్ నెం: 12-3-41, పీనా మహమ్మద్ వీధి, తారాపేట, విజయవాడ-520001
+                </div>
+            </div>
+
+            <!-- MIDDLE SECTION: BLACK FONT -->
+            <div class="black-middle-section">
+                <!-- Meta: To & Date -->
+                <div class="meta-section">
+                    <div class="to-box">
+                        <div class="to-title" id="toTitleLbl">శ్రీ / శ్రీమతి (To):</div>
+                        <div contenteditable="true" class="to-address-field" id="clientAddress" placeholder="కస్టమర్ పేరు, చిరునామా ఇక్కడ టైప్ చేయండి..."></div>
+                        <div class="to-meta-row">
+                            <span class="to-meta-label" id="toGstLbl">GST నెంబర్:</span>
+                            <span contenteditable="true" class="to-meta-val" id="clientGst" placeholder="కస్టమర్ GSTIN..."></span>
+                        </div>
+                        <div class="to-meta-row">
+                            <span class="to-meta-label" id="toPhoneLbl">ఫోన్ నెంబర్:</span>
+                            <span contenteditable="true" class="to-meta-val" id="clientPhone" placeholder="మొబైల్ నంబర్..."></span>
+                        </div>
+                    </div>
+
+                    <div class="right-box">
+                        <div class="date-box">
+                            <span class="date-label" id="dateLbl">తేదీ (Date):</span>
+                            <span contenteditable="true" class="date-val" id="quoteDate">02-10-2026</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container">
+                    <table id="quoteTable">
+                        <thead>
+                            <tr>
+                                <th class="th-sno" id="thSno">క్ర.సం.</th>
+                                <th class="th-particulars" id="thParticulars">వస్తువు / సర్వీస్ వివరాలు</th>
+                                <th class="th-qty" id="thQty">పరిమాణం</th>
+                                <th class="th-amount" id="thAmount">మొత్తం (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr class="data-row">
+                                <td class="td-sno"><span class="sno-val">1</span></td>
+                                <td class="td-particulars">
+                                    <span class="del-btn" onclick="deleteRow(this)" title="వరుసను తొలగించు">✕</span>
+                                    <div contenteditable="true" class="item-desc" placeholder="వస్తువు లేదా సర్వీస్ వివరాలు ఇక్కడ రాయండి..."></div>
+                                </td>
+                                <td class="td-qty">
+                                    <span contenteditable="true" class="qty-field" placeholder="1">1</span>
+                                </td>
+                                <td class="td-amount">
+                                    <span contenteditable="true" class="amt-field" oninput="calculateTotal()" placeholder="0.00"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <!-- Sub Total -->
+                            <tr class="summary-row">
+                                <td colspan="3" class="summary-label" id="subTotalLbl">మొత్తం (SUB TOTAL)</td>
+                                <td class="td-amount" id="subTotalVal">0.00</td>
+                            </tr>
+                            <!-- GST Selection Row -->
+                            <tr class="summary-row">
+                                <td colspan="3" class="summary-label">
+                                    <span id="gstLbl">జి.ఎస్.టి / GST</span> (<span contenteditable="true" id="gstRate" oninput="calculateTotal()" style="outline: 1px dashed #94a3b8; padding: 0 4px; border-radius: 2px;">18</span>%)
+                                </td>
+                                <td class="td-amount" id="gstAmtVal">0.00</td>
+                            </tr>
+                            <!-- Grand Total -->
+                            <tr class="grand-total-row">
+                                <td colspan="3" class="summary-label" id="grandTotalLbl">మొత్తం చెల్లించవలసినది (GRAND TOTAL)</td>
+                                <td class="td-amount" id="grandTotal">0.00</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Section: Bank and Signature -->
+        <div class="bottom-section">
+            <div class="bank-details">
+                <div class="bank-row">
+                    <span class="bank-label" id="bankNameLbl">బ్యాంక్ పేరు</span>
+                    <span class="bank-colon">:</span>
+                    <span class="bank-value" id="bankName">సెంట్రల్ బ్యాంక్ అఫ్ ఇండియా</span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label" id="bankAccLbl">ఖాతా నెంబరు (A/C)</span>
+                    <span class="bank-colon">:</span>
+                    <span class="bank-value" id="bankAcc">3635235678</span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label" id="bankIfscLbl">IFSC కోడ్</span>
+                    <span class="bank-colon">:</span>
+                    <span class="bank-value" id="bankIfsc">CBIN0280830</span>
+                </div>
+                <div class="bank-row">
+                    <span class="bank-label" id="bankBranchLbl">బ్యాంక్ శాఖ (Branch)</span>
+                    <span class="bank-colon">:</span>
+                    <span class="bank-value" id="bankBranch">వన్ టౌన్, విజయవాడ</span>
+                </div>
+            </div>
+
+            <div class="signature-box">
+                <div class="yours-faithfully" id="yoursFaithfullyLbl">భవదీయులు</div>
+                <div class="sig-company" id="sigCompanyLbl">శ్రీ ఆదిత్య ఇంజనీరింగ్ కంపెనీ తరఫున</div>
+                <div class="sig-role" id="sigRoleLbl">(ప్రొప్రైటర్)</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            te: {
+                appBarTitle: "శ్రీ ఆదిత్య కొటేషన్ యాప్",
+                appBarSub: "తెలుగు / ENGLISH / HINDI భాషలు",
+                btnInstallTxt: "యాప్ ఇన్స్టాల్",
+                btnAddRowTxt: "వరుస చేర్చు",
+                btnWaTxt: "వాట్సాప్",
+                btnPrintTxt: "PDF సేవ్",
+                gstLabel: "జి.ఎస్.టి (GST)",
+                cellLabel: "ఫోన్ (CELL)",
+                mainTitleTxt: "కొటేషన్ (QUOTATION)",
+                companyVal: "శ్రీ ఆదిత్య ఇంజనీరింగ్ కంపెనీ",
+                companyAddressVal: "డోర్ నెం: 12-3-41, పీనా మహమ్మద్ వీధి, తారాపేట, విజయవాడ-520001",
+                toTitleLbl: "శ్రీ / శ్రీమతి (To):",
+                toGstLbl: "GST నెంబర్:",
+                toPhoneLbl: "ఫోన్ నెంబర్:",
+                dateLbl: "తేదీ (Date):",
+                thSno: "క్ర.సం.",
+                thParticulars: "వస్తువు / సర్వీస్ వివరాలు",
+                thQty: "పరిమాణం",
+                thAmount: "మొత్తం (₹)",
+                subTotalLbl: "మొత్తం (SUB TOTAL)",
+                gstLbl: "జి.ఎస్.టి / GST",
+                grandTotalLbl: "మొత్తం చెల్లించవలసినది (GRAND TOTAL)",
+                bankNameLbl: "బ్యాంక్ పేరు",
+                bankAccLbl: "ఖాతా నెంబరు (A/C)",
+                bankIfscLbl: "IFSC కోడ్",
+                bankBranchLbl: "బ్యాంక్ శాఖ (Branch)",
+                bankName: "సెంట్రల్ బ్యాంక్ అఫ్ ఇండియా",
+                bankBranch: "వన్ టౌన్, విజయవాడ",
+                yoursFaithfullyLbl: "భవదీయులు",
+                sigCompanyLbl: "శ్రీ ఆదిత్య ఇంజనీరింగ్ కంపెనీ తరఫున",
+                sigRoleLbl: "(ప్రొప్రైటర్)",
+                clientPlaceholder: "కస్టమర్ పేరు, చిరునామా ఇక్కడ టైప్ చేయండి...",
+                clientGstPlaceholder: "కస్టమర్ GSTIN...",
+                clientPhonePlaceholder: "మొబైల్ నంబర్...",
+                itemPlaceholder: "వస్తువు లేదా సర్వీస్ వివరాలు ఇక్కడ రాయండి..."
+            },
+            en: {
+                appBarTitle: "Sri Aditya Quotation App",
+                appBarSub: "ENGLISH / TELUGU / HINDI Dynamic Switcher",
+                btnInstallTxt: "Install App",
+                btnAddRowTxt: "Add Row",
+                btnWaTxt: "WhatsApp",
+                btnPrintTxt: "Save PDF",
+                gstLabel: "GST",
+                cellLabel: "CELL",
+                mainTitleTxt: "QUOTATION",
+                companyVal: "SRI ADITYA ENGINEERING COMPANY",
+                companyAddressVal: "D. No: 12-3-41, Peena Mohammed Street, Tarapeta, Vijayawada-520001",
+                toTitleLbl: "To:",
+                toGstLbl: "GSTIN:",
+                toPhoneLbl: "CELL / PHONE:",
+                dateLbl: "Date:",
+                thSno: "S.NO",
+                thParticulars: "PARTICULARS",
+                thQty: "QTY",
+                thAmount: "AMOUNT (₹)",
+                subTotalLbl: "SUB TOTAL",
+                gstLbl: "GST",
+                grandTotalLbl: "GRAND TOTAL",
+                bankNameLbl: "Bank Name",
+                bankAccLbl: "Account No",
+                bankIfscLbl: "IFSC Code",
+                bankBranchLbl: "Branch",
+                bankName: "Central Bank of India",
+                bankBranch: "One Town, Vijayawada",
+                yoursFaithfullyLbl: "YOURS FAITHFULLY",
+                sigCompanyLbl: "FOR SRI ADITYA ENGINEERING COMPANY",
+                sigRoleLbl: "(Proprietor)",
+                clientPlaceholder: "Enter Customer Name, Address here...",
+                clientGstPlaceholder: "Customer GSTIN...",
+                clientPhonePlaceholder: "Phone Number...",
+                itemPlaceholder: "Enter item description or service details..."
+            },
+            hi: {
+                appBarTitle: "श्री आदित्य कोटेशन ऐप",
+                appBarSub: "हिंदी / ENGLISH / TELUGU भाषा विकल्प",
+                btnInstallTxt: "ऐप इंस्टॉल करें",
+                btnAddRowTxt: "पंक्ति जोड़ें",
+                btnWaTxt: "व्हाट्सएप",
+                btnPrintTxt: "PDF सहेजें",
+                gstLabel: "जी.एस.टी (GST)",
+                cellLabel: "फोन (CELL)",
+                mainTitleTxt: "कोटेशन (QUOTATION)",
+                companyVal: "श्री आदित्य इंजीनियरिंग कंपनी",
+                companyAddressVal: "मकान नं: 12-3-41, पीना मोहम्मद स्ट्रीट, तारापेटा, विजयवाड़ा-520001",
+                toTitleLbl: "सेवा में (To):",
+                toGstLbl: "जीएसटी नंबर:",
+                toPhoneLbl: "फोन नंबर:",
+                dateLbl: "दिनांक (Date):",
+                thSno: "क्र.सं.",
+                thParticulars: "सामग्री / सेवा विवरण",
+                thQty: "मात्रा",
+                thAmount: "कुल राशि (₹)",
+                subTotalLbl: "उप-कुल (SUB TOTAL)",
+                gstLbl: "जी.एस.टी / GST",
+                grandTotalLbl: "कुल देय राशि (GRAND TOTAL)",
+                bankNameLbl: "बैंक का नाम",
+                bankAccLbl: "खाता संख्या (A/C)",
+                bankIfscLbl: "IFSC कोड",
+                bankBranchLbl: "शाखा (Branch)",
+                bankName: "सेंट्रल बैंक ऑफ इंडिया",
+                bankBranch: "वन टाउन, विजयवाड़ा",
+                yoursFaithfullyLbl: "भवदीय",
+                sigCompanyLbl: "कृते श्री आदित्य इंजीनियरिंग कंपनी",
+                sigRoleLbl: "(प्रोप्राइटर)",
+                clientPlaceholder: "ग्राहक का नाम एवं पता लिखें...",
+                clientGstPlaceholder: "ग्राहक जीएसटी नंबर...",
+                clientPhonePlaceholder: "मोबाइल नंबर...",
+                itemPlaceholder: "सामग्री या विवरण यहाँ लिखें..."
+            }
+        };
+
+        let currentLang = 'te';
+
+        function changeLanguage(langKey) {
+            currentLang = langKey;
+            const langData = translations[langKey];
+            if (!langData) return;
+
+            // Header & App Bar
+            document.getElementById('appBarTitle').innerText = langData.appBarTitle;
+            document.getElementById('appBarSub').innerText = langData.appBarSub;
+            document.getElementById('btnInstallTxt').innerText = langData.btnInstallTxt;
+            document.getElementById('btnAddRowTxt').innerText = langData.btnAddRowTxt;
+            document.getElementById('btnWaTxt').innerText = langData.btnWaTxt;
+            document.getElementById('btnPrintTxt').innerText = langData.btnPrintTxt;
+
+            // Invoice Headers
+            document.getElementById('gstLabel').innerText = langData.gstLabel;
+            document.getElementById('cellLabel').innerText = langData.cellLabel;
+            document.getElementById('mainTitleTxt').innerText = langData.mainTitleTxt;
+            document.getElementById('companyVal').innerText = langData.companyVal;
+            document.getElementById('companyAddressVal').innerText = langData.companyAddressVal;
+
+            // To section & Date
+            document.getElementById('toTitleLbl').innerText = langData.toTitleLbl;
+            document.getElementById('toGstLbl').innerText = langData.toGstLbl;
+            document.getElementById('toPhoneLbl').innerText = langData.toPhoneLbl;
+            document.getElementById('dateLbl').innerText = langData.dateLbl;
+
+            // Placeholders
+            document.getElementById('clientAddress').setAttribute('placeholder', langData.clientPlaceholder);
+            document.getElementById('clientGst').setAttribute('placeholder', langData.clientGstPlaceholder);
+            document.getElementById('clientPhone').setAttribute('placeholder', langData.clientPhonePlaceholder);
+
+            // Table Headers & Footer
+            document.getElementById('thSno').innerText = langData.thSno;
+            document.getElementById('thParticulars').innerText = langData.thParticulars;
+            document.getElementById('thQty').innerText = langData.thQty;
+            document.getElementById('thAmount').innerText = langData.thAmount;
+            document.getElementById('subTotalLbl').innerText = langData.subTotalLbl;
+            document.getElementById('gstLbl').innerText = langData.gstLbl;
+            document.getElementById('grandTotalLbl').innerText = langData.grandTotalLbl;
+
+            // Update item row placeholders
+            document.querySelectorAll('.item-desc').forEach(el => {
+                el.setAttribute('placeholder', langData.itemPlaceholder);
+            });
+
+            // Bank & Signature
+            document.getElementById('bankNameLbl').innerText = langData.bankNameLbl;
+            document.getElementById('bankAccLbl').innerText = langData.bankAccLbl;
+            document.getElementById('bankIfscLbl').innerText = langData.bankIfscLbl;
+            document.getElementById('bankBranchLbl').innerText = langData.bankBranchLbl;
+            document.getElementById('bankName').innerText = langData.bankName;
+            document.getElementById('bankBranch').innerText = langData.bankBranch;
+
+            document.getElementById('yoursFaithfullyLbl').innerText = langData.yoursFaithfullyLbl;
+            document.getElementById('sigCompanyLbl').innerText = langData.sigCompanyLbl;
+            document.getElementById('sigRoleLbl').innerText = langData.sigRoleLbl;
+        }
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            const btn = document.getElementById('installBtn');
+            if (btn) btn.style.display = 'inline-flex';
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    deferredPrompt = null;
+                });
+            } else {
+                alert("మొబైల్ ఫోన్ లో యాప్ లాగా సేవ్ చేసుకోవడానికి / To install as app:\\n\\n1. Chrome బ్రౌజర్ పైన ఉన్న 3 చుక్కలు (⋮) ని నొక్కండి.\\n2. 'Add to Home screen' లేదా 'Install app' ఆప్షన్ ని ఎంచుకోండి.\\n\\niPhone Safari: Share -> 'Add to Home Screen'");
+            }
+        }
+
+        function renumberRows() {
+            const snos = document.querySelectorAll('.sno-val');
+            snos.forEach((el, index) => {
+                el.innerText = index + 1;
+            });
+        }
+
+        function formatCurrency(num) {
+            return num.toLocaleString('en-IN', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+        }
+
+        function calculateTotal() {
+            const amts = document.querySelectorAll('.amt-field');
+            let subtotal = 0;
+            amts.forEach(field => {
+                let clean = field.innerText.replace(/[^0-9.]/g, '');
+                let num = parseFloat(clean);
+                if (!isNaN(num)) subtotal += num;
+            });
+
+            let gstPercentStr = document.getElementById('gstRate').innerText.replace(/[^0-9.]/g, '');
+            let gstPercent = parseFloat(gstPercentStr);
+            if (isNaN(gstPercent)) gstPercent = 0;
+
+            let gstAmount = (subtotal * gstPercent) / 100;
+            let grandTotal = subtotal + gstAmount;
+
+            if (subtotal > 0) {
+                document.getElementById('subTotalVal').innerText = formatCurrency(subtotal);
+                document.getElementById('gstAmtVal').innerText = formatCurrency(gstAmount);
+                document.getElementById('grandTotal').innerText = formatCurrency(grandTotal);
+            } else {
+                document.getElementById('subTotalVal').innerText = '0.00';
+                document.getElementById('gstAmtVal').innerText = '0.00';
+                document.getElementById('grandTotal').innerText = '0.00';
+            }
+        }
+
+        function addRow() {
+            const tbody = document.getElementById('tableBody');
+            const langData = translations[currentLang];
+            const tr = document.createElement('tr');
+            tr.className = 'data-row';
+            tr.innerHTML = `
+                <td class="td-sno"><span class="sno-val"></span></td>
+                <td class="td-particulars">
+                    <span class="del-btn" onclick="deleteRow(this)" title="Delete Row">✕</span>
+                    <div contenteditable="true" class="item-desc" placeholder="${langData.itemPlaceholder}"></div>
+                </td>
+                <td class="td-qty">
+                    <span contenteditable="true" class="qty-field" placeholder="1">1</span>
+                </td>
+                <td class="td-amount">
+                    <span contenteditable="true" class="amt-field" oninput="calculateTotal()" placeholder="0.00"></span>
+                </td>
+            `;
+            tbody.appendChild(tr);
+            renumberRows();
+            calculateTotal();
+        }
+
+        function deleteRow(btn) {
+            const rows = document.querySelectorAll('.data-row');
+            if (rows.length > 1) {
+                btn.closest('tr').remove();
+                renumberRows();
+                calculateTotal();
+            } else {
+                alert('కనీసం ఒక వరుస తప్పనిసరిగా ఉండాలి / At least 1 row required!');
+            }
+        }
+
+        function shareOnWhatsApp() {
+            const langData = translations[currentLang];
+            const company = document.getElementById('companyVal').innerText.trim();
+            const client = document.getElementById('clientAddress').innerText.trim() || 'Customer';
+            const clientGst = document.getElementById('clientGst').innerText.trim();
+            const clientPhone = document.getElementById('clientPhone').innerText.trim();
+            const date = document.getElementById('quoteDate').innerText.trim();
+            const subtotal = document.getElementById('subTotalVal').innerText.trim();
+            const gstRate = document.getElementById('gstRate').innerText.trim();
+            const gstAmt = document.getElementById('gstAmtVal').innerText.trim();
+            const grandTotal = document.getElementById('grandTotal').innerText.trim();
+            const bank = document.getElementById('bankName').innerText.trim();
+            const acc = document.getElementById('bankAcc').innerText.trim();
+            const ifsc = document.getElementById('bankIfsc').innerText.trim();
+            const branch = document.getElementById('bankBranch').innerText.trim();
+
+            let itemsText = "";
+            const rows = document.querySelectorAll('.data-row');
+            rows.forEach((row, idx) => {
+                const desc = row.querySelector('.item-desc').innerText.trim().replace(/\\s+/g, ' ');
+                const qty = row.querySelector('.qty-field').innerText.trim() || '1';
+                const amt = row.querySelector('.amt-field').innerText.trim() || '0.00';
+                if (desc) {
+                    itemsText += `${idx + 1}. ${desc} (${langData.thQty}: ${qty}) \\n   *${langData.thAmount}:* ₹${amt}\\n\\n`;
+                }
+            });
+
+            let msg = `*📌 ${langData.mainTitleTxt}*\\n`;
+            msg += `*${langData.companyVal}:* ${company}\\n`;
+            msg += `*${langData.dateLbl}:* ${date}\\n`;
+            msg += `-----------------------------\\n`;
+            msg += `*${langData.toTitleLbl}*\\n${client}\\n`;
+            if (clientGst) {
+                msg += `*${langData.toGstLbl}* ${clientGst}\\n`;
+            }
+            if (clientPhone) {
+                msg += `*${langData.toPhoneLbl}* ${clientPhone}\\n`;
+            }
+            msg += `-----------------------------\\n`;
+            msg += `*${langData.thParticulars}:*\\n${itemsText || 'N/A\\n' }`;
+            msg += `*${langData.subTotalLbl}:* ₹${subtotal}\\n`;
+            msg += `*${langData.gstLbl} (${gstRate}%):* ₹${gstAmt}\\n`;
+            msg += `*${langData.grandTotalLbl}:* ₹${grandTotal}\\n`;
+            msg += `-----------------------------\\n`;
+            msg += `*${langData.bankNameLbl}:*\\n`;
+            msg += `• ${langData.bankNameLbl}: ${bank}\\n`;
+            msg += `• ${langData.bankAccLbl}: ${acc}\\n`;
+            msg += `• ${langData.bankIfscLbl}: ${ifsc}\\n`;
+            msg += `• ${langData.bankBranchLbl}: ${branch}\\n\\n`;
+            msg += `Thank you! 🙏`;
+
+            let targetPhone = clientPhone.replace(/[^0-9]/g, '');
+            if (!targetPhone) {
+                targetPhone = prompt("Enter customer WhatsApp Mobile Number (e.g., 919876543210):") || "";
+                targetPhone = targetPhone.replace(/[^0-9]/g, '');
+            }
+
+            let url = "";
+            if (targetPhone && targetPhone.length >= 10) {
+                if (targetPhone.length === 10) targetPhone = '91' + targetPhone;
+                url = `https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(msg)}`;
+            } else {
+                url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+            }
+
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
