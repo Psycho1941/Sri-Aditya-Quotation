@@ -1326,7 +1326,47 @@
             }
         }
 
-    </style>
+    
+
+        /* Print each 20-row group on its own A4 sheet using the same template. */
+        #printPages { display: none; }
+        @media print {
+            body.printing-quotation > #invoice:not(.print-page) { display: none !important; }
+            body.printing-quotation #printPages { display: block !important; visibility: visible !important; }
+            #printPages #invoice.print-page {
+                display: flex !important;
+                width: 210mm !important;
+                min-width: 210mm !important;
+                max-width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                max-height: 297mm !important;
+                margin: 0 !important;
+                box-sizing: border-box !important;
+                page-break-after: always !important;
+                break-after: page !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            #printPages #invoice.print-page:last-child {
+                page-break-after: auto !important;
+                break-after: auto !important;
+            }
+            #printPages .table-container { overflow: visible !important; }
+            #printPages table { width: 100% !important; table-layout: fixed !important; }
+            #printPages .item-desc,
+            #printPages .qty-field,
+            #printPages .amt-field {
+                font-size: 10px !important;
+                line-height: 1.2 !important;
+            }
+            #printPages .data-row td {
+                padding-top: 3px !important;
+                padding-bottom: 3px !important;
+            }
+            #printPages .del-btn { display: none !important; }
+        }
+</style>
 
 </head>
 
@@ -2199,61 +2239,27 @@
 
 
         function addRow() {
-
             const tbody = document.getElementById('tableBody');
-            // No fixed item limit: rows are added as needed and print layout scales to A4.
-
             const langData = translations[currentLang];
-
             const tr = document.createElement('tr');
-
             tr.className = 'data-row';
-
             tr.innerHTML = `
-
                 <td class="td-sno"><span class="sno-val"></span></td>
-
                 <td class="td-particulars">
-
                     <span class="del-btn" onclick="deleteRow(this)" title="Delete Row">✕</span>
-
                     <div contenteditable="true" class="item-desc" placeholder="${langData.itemPlaceholder}"></div>
-
                 </td>
-
                 <td class="td-qty">
-
                     <span contenteditable="true" class="qty-field" placeholder="1">1</span>
-
                 </td>
-
                 <td class="td-amount">
-
                     <span contenteditable="true" class="amt-field" oninput="calculateTotal()" placeholder="0.00"></span>
-
                 </td>
-
             `;
-
             tbody.appendChild(tr);
-
             renumberRows();
             calculateTotal();
-
-            // Keep the same font size for every item. If this extra row makes
-            // the quotation overflow its A4 page, remove it and stop adding rows.
-            requestAnimationFrame(() => {
-                const invoice = document.getElementById('invoice');
-                if (invoice && invoice.scrollHeight > invoice.clientHeight + 2) {
-                    tr.remove();
-                    renumberRows();
-                    calculateTotal();
-                    alert('The A4 quotation page is full. No more item rows can be added without changing the font size or creating a second page.');
-                }
-            });
-
         }
-
 
 
         function deleteRow(btn) {
@@ -2413,8 +2419,55 @@
         }
 
     
-        // Item typography remains fixed for all item counts. The add-row
-        // guard prevents adding rows once the single A4 page is full.
+        // Print pagination: 20 items per A4 page, with the same template
+        // repeated on every page and continuous item numbering.
+        function preparePrintPages() {
+            const original = document.getElementById('invoice');
+            if (!original) return;
+
+            const oldPages = document.getElementById('printPages');
+            if (oldPages) oldPages.remove();
+
+            const allRows = Array.from(original.querySelectorAll('#tableBody .data-row'));
+            const rowsPerPage = 20;
+            const pageCount = Math.max(1, Math.ceil(allRows.length / rowsPerPage));
+            const printPages = document.createElement('div');
+            printPages.id = 'printPages';
+
+            for (let pageIndex = 0; pageIndex < pageCount; pageIndex++) {
+                const page = original.cloneNode(true);
+                page.classList.add('print-page');
+
+                const tbody = page.querySelector('#tableBody');
+                tbody.innerHTML = '';
+
+                const pageRows = allRows.slice(pageIndex * rowsPerPage, (pageIndex + 1) * rowsPerPage);
+                pageRows.forEach((sourceRow, rowIndex) => {
+                    const row = sourceRow.cloneNode(true);
+                    row.querySelector('.sno-val').textContent = String(pageIndex * rowsPerPage + rowIndex + 1);
+                    tbody.appendChild(row);
+                });
+
+                // Totals and bank/signature block appear once, on the final page.
+                if (pageIndex < pageCount - 1) {
+                    const tableFoot = page.querySelector('tfoot');
+                    if (tableFoot) tableFoot.remove();
+                    const bottom = page.querySelector('.bottom-section');
+                    if (bottom) bottom.remove();
+                }
+
+                printPages.appendChild(page);
+            }
+
+            document.body.appendChild(printPages);
+            document.body.classList.add('printing-quotation');
+        }
+
+        function clearPrintPages() {
+            const pages = document.getElementById('printPages');
+            if (pages) pages.remove();
+            document.body.classList.remove('printing-quotation');
+        }
 
         // Paste plain text only, preventing Word/WhatsApp formatting from changing item font size.
         document.addEventListener('paste', function(event) {
@@ -2425,7 +2478,9 @@
             document.execCommand('insertText', false, text);
         });
 
-        // No automatic font reduction or print scaling: keep the same layout.
+        window.addEventListener('beforeprint', preparePrintPages);
+        window.addEventListener('afterprint', clearPrintPages);
+        window.addEventListener('focus', clearPrintPages);
 
     </script>
 
